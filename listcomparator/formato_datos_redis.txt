@@ -1,0 +1,48 @@
+
+1° Formato utilizado: "ABC123": {"status": "robado", "fecha_robo": "2023-12-15", "modelo": "Toyota Corolla"}
+Carga a redis:  SET "ABC123" "{\"status\": \"robado\", \"fecha_robo\": \"2023-12-15\", \"modelo\": \"Toyota Corolla\"}"
+**Descartado**
+
+Formato propuesto por Diego:
+
+id camera, contenedor, "ABC123": {"status": "robado", "fecha_robo": "2023-12-15", "modelo": "Toyota Corolla"}  
+***OBSERVACIÓN: no estoy almacenando datos específicos por cámara en Redis
+**Descartado**
+
+AFIRMACIONES:
+
+La base de datos de vehículos robados NO es específica para cada cámara 
+Es una base de datos global
+
+ENTONCES: 
+
+
+****
+ESTRUCTURA:  
+key: "contenedorlistas" (nombre del hash global)
+field: "tipo_de_listas:placa" (placa del vehículo)
+
+redis.sadd('laslistas',tipo_de_listas)
+
+
+redis.semember(contenedorlistas:tipo_lista)
+redis.hget("contenedorlistas", "tipo_de_listas:placa")
+
+****
+ESTRUCTURA:  
+key: "contenedorlistas" 
+field: "tipo_lista:placa" (tipo lista y placa del vehículo)
+value: JSON con información del vehículo robado.
+redis.sadd('contenedorlistas:tipo_lista',placa)
+
+redis.semember(contenedorlistas:tipo_lista)
+redis.hget("contenedorlistas", "tipo_lista:placa")
+
+key: "stolen_vehicles" (nombre del hash global)
+field: "ABC123" (placa del vehículo)
+value: JSON con información del vehículo robado.
+
+
+HSET "stolen_vehicles" "AZD920" "{\"status\": \"robado\", \"fecha_robo\": \"2023-12-15\", \"modelo\": \"Volvo\"}"
+HSET "stolen_vehicles" "ABW939" "{\"status\": \"robado\", \"fecha_robo\": \"2024-01-20\", \"modelo\": \"Honda Civic\"}"
+**Formato elegido***

@@ -1,0 +1,11 @@
+# Carpetas específicas a ignorar
+mediapipe/
+nodered/
+containerd/
+nvidia/
+
+# Todas las carpetas llamadas "models" en cualquier ubicación
+**/models/
+
+# Archivo tar específico
+python-3.11-slim.tar

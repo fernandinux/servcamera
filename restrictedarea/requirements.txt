@@ -1,0 +1,7 @@
+pika
+pytz
+numpy
+opencv-python
+pillow
+redis
+matplotlib>=3.8.0

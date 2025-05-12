@@ -1,0 +1,6 @@
+pika
+pytz
+numpy
+opencv-python
+pillow
+redis
